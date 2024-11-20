@@ -1,0 +1,168 @@
+
+
+================================================================
+== Synthesis Summary Report of 'bfs_gas'
+================================================================
++ General Information: 
+    * Date:           Tue Nov 19 17:59:52 2024
+    * Version:        2022.2 (Build 3670227 on Oct 13 2022)
+    * Project:        bfs_x_222
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcu250-figd2104-2L-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------------------------+------+------+---------+--------+----------+---------+------+----------+---------+----+-----------+------------+-----------+
+    |               Modules               | Issue|      | Latency | Latency| Iteration|         | Trip |          |         |    |           |            |           |
+    |               & Loops               | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined|  BRAM   | DSP|     FF    |     LUT    |    URAM   |
+    +-------------------------------------+------+------+---------+--------+----------+---------+------+----------+---------+----+-----------+------------+-----------+
+    |+ bfs_gas                            |     -|  0.75|        -|       -|         -|        -|     -|        no|  1 (~0%)|   -|  291 (~0%)|  6056 (~0%)|  192 (15%)|
+    | + bfs_gas_Pipeline_VITIS_LOOP_22_1  |     -|  0.75|        -|       -|         -|        -|     -|        no|        -|   -|   22 (~0%)|    74 (~0%)|          -|
+    |  o VITIS_LOOP_22_1                  |     -|  3.65|        -|       -|         1|        1|     -|       yes|        -|   -|          -|           -|          -|
+    | + bfs_gas_Pipeline_VITIS_LOOP_31_2  |     -|  3.65|        -|       -|         -|        -|     -|        no|        -|   -|    2 (~0%)|    22 (~0%)|          -|
+    |  o VITIS_LOOP_31_2                  |     -|  3.65|        -|       -|         1|        1|     -|       yes|        -|   -|          -|           -|          -|
+    +-------------------------------------+------+------+---------+--------+----------+---------+------+----------+---------+----+-----------+------------+-----------+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 5             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+-----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register  | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+-----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL      | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER      | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER    | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR    | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | source    | 0x10   | 32    | W      | Data signal of source            |                                                                      |
+| s_axi_control | num_nodes | 0x18   | 32    | W      | Data signal of num_nodes         |                                                                      |
++---------------+-----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AXIS
++-----------+---------------+-------+--------+--------+
+| Interface | Register Mode | TDATA | TREADY | TVALID |
++-----------+---------------+-------+--------+--------+
+| in_stream | both          | 32    | 1      | 1      |
++-----------+---------------+-------+--------+--------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-----------+-----------+-------------------------+
+| Argument  | Direction | Datatype                |
++-----------+-----------+-------------------------+
+| in_stream | inout     | stream<ap_uint<32>, 0>& |
+| source    | in        | ap_uint<32>             |
+| num_nodes | in        | ap_uint<32>             |
++-----------+-----------+-------------------------+
+
+* SW-to-HW Mapping
++-----------+---------------+-----------+-------------------------------------+
+| Argument  | HW Interface  | HW Type   | HW Info                             |
++-----------+---------------+-----------+-------------------------------------+
+| in_stream | in_stream     | interface |                                     |
+| source    | s_axi_control | register  | name=source offset=0x10 range=32    |
+| num_nodes | s_axi_control | register  | name=num_nodes offset=0x18 range=32 |
++-----------+---------------+-----------+-------------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+  No burst in design
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------+-----+--------+-----------+-----+--------+---------+
+| Name                                | DSP | Pragma | Variable  | Op  | Impl   | Latency |
++-------------------------------------+-----+--------+-----------+-----+--------+---------+
+| + bfs_gas                           | 0   |        |           |     |        |         |
+|  + bfs_gas_Pipeline_VITIS_LOOP_22_1 | 0   |        |           |     |        |         |
+|    add_ln840_fu_376_p2              | -   |        | add_ln840 | add | fabric | 0       |
++-------------------------------------+-----+--------+-----------+-----+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++------------------+------+------+--------+--------------+---------+------+---------+
+| Name             | BRAM | URAM | Pragma | Variable     | Storage | Impl | Latency |
++------------------+------+------+--------+--------------+---------+------+---------+
+| + bfs_gas        | 1    | 192  |        |              |         |      |         |
+|   distances_0_U  | -    | 12   | pragma | distances_0  | ram_1p  | uram | 1       |
+|   visited_1_U    | 1    | -    | pragma | visited_1    | ram_2p  | bram | 1       |
+|   distances_1_U  | -    | 12   | pragma | distances_1  | ram_1p  | uram | 1       |
+|   distances_2_U  | -    | 12   | pragma | distances_2  | ram_1p  | uram | 1       |
+|   distances_3_U  | -    | 12   | pragma | distances_3  | ram_1p  | uram | 1       |
+|   distances_4_U  | -    | 12   | pragma | distances_4  | ram_1p  | uram | 1       |
+|   distances_5_U  | -    | 12   | pragma | distances_5  | ram_1p  | uram | 1       |
+|   distances_6_U  | -    | 12   | pragma | distances_6  | ram_1p  | uram | 1       |
+|   distances_7_U  | -    | 12   | pragma | distances_7  | ram_1p  | uram | 1       |
+|   distances_8_U  | -    | 12   | pragma | distances_8  | ram_1p  | uram | 1       |
+|   distances_9_U  | -    | 12   | pragma | distances_9  | ram_1p  | uram | 1       |
+|   distances_10_U | -    | 12   | pragma | distances_10 | ram_1p  | uram | 1       |
+|   distances_11_U | -    | 12   | pragma | distances_11 | ram_1p  | uram | 1       |
+|   distances_12_U | -    | 12   | pragma | distances_12 | ram_1p  | uram | 1       |
+|   distances_13_U | -    | 12   | pragma | distances_13 | ram_1p  | uram | 1       |
+|   distances_14_U | -    | 12   | pragma | distances_14 | ram_1p  | uram | 1       |
+|   distances_15_U | -    | 12   | pragma | distances_15 | ram_1p  | uram | 1       |
++------------------+------+------+--------+--------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Pragmas with Warnings
++-----------+-----------------------------------------------------+--------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| Type      | Options                                             | Location                                                                 | Messages                                                                                                                          |
++-----------+-----------------------------------------------------+--------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| interface | m_axi port=csr_row_ptr offset=slave bundle=gmem     | ../../../../OneDrive/Pictures/bfs_gas.cpp:9 in bfs_gas, csr_row_ptr      | Cannot apply INTERFACE pragma on a global variable. In function 'bfs_gas(hls::stream<ap_uint<32>, 0>&, ap_uint<32>, ap_uint<32>)' |
+| interface | m_axi port=csr_col_indices offset=slave bundle=gmem | ../../../../OneDrive/Pictures/bfs_gas.cpp:10 in bfs_gas, csr_col_indices | Cannot apply INTERFACE pragma on a global variable. In function 'bfs_gas(hls::stream<ap_uint<32>, 0>&, ap_uint<32>, ap_uint<32>)' |
+| interface | m_axi port=distances offset=slave bundle=gmem       | ../../../../OneDrive/Pictures/bfs_gas.cpp:11 in bfs_gas, distances       | Cannot apply INTERFACE pragma on a global variable. In function 'bfs_gas(hls::stream<ap_uint<32>, 0>&, ap_uint<32>, ap_uint<32>)' |
+| interface | m_axi port=visited offset=slave bundle=gmem         | ../../../../OneDrive/Pictures/bfs_gas.cpp:12 in bfs_gas, visited         | Cannot apply INTERFACE pragma on a global variable. In function 'bfs_gas(hls::stream<ap_uint<32>, 0>&, ap_uint<32>, ap_uint<32>)' |
++-----------+-----------------------------------------------------+--------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+* Valid Pragma Syntax
++-----------------+------------------------------------------------+--------------------------------------------------------------------------+
+| Type            | Options                                        | Location                                                                 |
++-----------------+------------------------------------------------+--------------------------------------------------------------------------+
+| interface       | axis port=in_stream                            | ../../../../OneDrive/Pictures/bfs_gas.cpp:4 in bfs_gas, in_stream        |
+| interface       | s_axilite port=return bundle=control           | ../../../../OneDrive/Pictures/bfs_gas.cpp:5 in bfs_gas, return           |
+| interface       | s_axilite port=source bundle=control           | ../../../../OneDrive/Pictures/bfs_gas.cpp:6 in bfs_gas, source           |
+| interface       | s_axilite port=num_nodes bundle=control        | ../../../../OneDrive/Pictures/bfs_gas.cpp:7 in bfs_gas, num_nodes        |
+| bind_storage    | variable=csr_row_ptr type=ram_2p impl=bram     | ../../../../OneDrive/Pictures/bfs_gas.cpp:14 in bfs_gas, csr_row_ptr     |
+| bind_storage    | variable=csr_col_indices type=ram_1p impl=uram | ../../../../OneDrive/Pictures/bfs_gas.cpp:15 in bfs_gas, csr_col_indices |
+| bind_storage    | variable=distances type=ram_1p impl=uram       | ../../../../OneDrive/Pictures/bfs_gas.cpp:16 in bfs_gas, distances       |
+| bind_storage    | variable=visited type=ram_2p impl=bram         | ../../../../OneDrive/Pictures/bfs_gas.cpp:17 in bfs_gas, visited         |
+| array_partition | variable=distances cyclic factor=16 dim=1      | ../../../../OneDrive/Pictures/bfs_gas.cpp:19 in bfs_gas, distances       |
+| pipeline        | II=1                                           | ../../../../OneDrive/Pictures/bfs_gas.cpp:23 in bfs_gas                  |
+| pipeline        | II=1                                           | ../../../../OneDrive/Pictures/bfs_gas.cpp:41 in bfs_gas                  |
++-----------------+------------------------------------------------+--------------------------------------------------------------------------+
+
+

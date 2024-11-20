@@ -1,0 +1,248 @@
+
+
+================================================================
+== Vitis HLS Report for 'bfs_gas'
+================================================================
+* Date:           Tue Nov 19 17:59:51 2024
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        bfs_x_222
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  2.896 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------------------------+----------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                             |                                  |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                   Instance                  |              Module              |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +---------------------------------------------+----------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_bfs_gas_Pipeline_VITIS_LOOP_22_1_fu_386  |bfs_gas_Pipeline_VITIS_LOOP_22_1  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |grp_bfs_gas_Pipeline_VITIS_LOOP_31_2_fu_425  |bfs_gas_Pipeline_VITIS_LOOP_31_2  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +---------------------------------------------+----------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        -|        -|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        0|      -|      136|      264|     0|
+|Memory               |        1|      -|       64|     4800|   192|
+|Multiplexer          |        -|      -|        -|      992|     -|
+|Register             |        -|      -|       91|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        1|      0|      291|     6056|   192|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |       ~0|      0|       ~0|        1|    60|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |       ~0|      0|       ~0|       ~0|    15|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    +---------------------------------------------+----------------------------------+---------+----+-----+-----+-----+
+    |                   Instance                  |              Module              | BRAM_18K| DSP|  FF | LUT | URAM|
+    +---------------------------------------------+----------------------------------+---------+----+-----+-----+-----+
+    |grp_bfs_gas_Pipeline_VITIS_LOOP_22_1_fu_386  |bfs_gas_Pipeline_VITIS_LOOP_22_1  |        0|   0|   22|   74|    0|
+    |grp_bfs_gas_Pipeline_VITIS_LOOP_31_2_fu_425  |bfs_gas_Pipeline_VITIS_LOOP_31_2  |        0|   0|    2|   22|    0|
+    |control_s_axi_U                              |control_s_axi                     |        0|   0|  112|  168|    0|
+    +---------------------------------------------+----------------------------------+---------+----+-----+-----+-----+
+    |Total                                        |                                  |        0|   0|  136|  264|    0|
+    +---------------------------------------------+----------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +----------------+------------------------------+---------+---+-----+-----+---------+-----+------+-------------+
+    |     Memory     |            Module            | BRAM_18K| FF| LUT | URAM|  Words  | Bits| Banks| W*Bits*Banks|
+    +----------------+------------------------------+---------+---+-----+-----+---------+-----+------+-------------+
+    |distances_0_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_1_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_2_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_3_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_4_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_5_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_6_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_7_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_8_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_9_U   |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_10_U  |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_11_U  |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_12_U  |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_13_U  |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_14_U  |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |distances_15_U  |distances_0_RAM_1P_URAM_0R0W  |        0|  4|  300|   12|    62500|   32|     1|      2000000|
+    |visited_1_U     |visited_1_RAM_2P_BRAM_0R0W    |        1|  0|    0|    0|  1000000|    1|     1|      1000000|
+    +----------------+------------------------------+---------+---+-----+-----+---------+-----+------+-------------+
+    |Total           |                              |        1| 64| 4800|  192|  2000000|  513|    17|     33000000|
+    +----------------+------------------------------+---------+---+-----+-----+---------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    +-------------------------------+----+-----------+-----+-----------+
+    |              Name             | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                      |  31|          6|    1|          6|
+    |distances_0_address0           |  14|          3|   16|         48|
+    |distances_0_ce0                |  14|          3|    1|          3|
+    |distances_0_d0                 |  14|          3|   32|         96|
+    |distances_0_we0                |  14|          3|    1|          3|
+    |distances_10_address0          |  14|          3|   16|         48|
+    |distances_10_ce0               |  14|          3|    1|          3|
+    |distances_10_d0                |  14|          3|   32|         96|
+    |distances_10_we0               |  14|          3|    1|          3|
+    |distances_11_address0          |  14|          3|   16|         48|
+    |distances_11_ce0               |  14|          3|    1|          3|
+    |distances_11_d0                |  14|          3|   32|         96|
+    |distances_11_we0               |  14|          3|    1|          3|
+    |distances_12_address0          |  14|          3|   16|         48|
+    |distances_12_ce0               |  14|          3|    1|          3|
+    |distances_12_d0                |  14|          3|   32|         96|
+    |distances_12_we0               |  14|          3|    1|          3|
+    |distances_13_address0          |  14|          3|   16|         48|
+    |distances_13_ce0               |  14|          3|    1|          3|
+    |distances_13_d0                |  14|          3|   32|         96|
+    |distances_13_we0               |  14|          3|    1|          3|
+    |distances_14_address0          |  14|          3|   16|         48|
+    |distances_14_ce0               |  14|          3|    1|          3|
+    |distances_14_d0                |  14|          3|   32|         96|
+    |distances_14_we0               |  14|          3|    1|          3|
+    |distances_15_address0          |  14|          3|   16|         48|
+    |distances_15_ce0               |  14|          3|    1|          3|
+    |distances_15_d0                |  14|          3|   32|         96|
+    |distances_15_we0               |  14|          3|    1|          3|
+    |distances_1_address0           |  14|          3|   16|         48|
+    |distances_1_ce0                |  14|          3|    1|          3|
+    |distances_1_d0                 |  14|          3|   32|         96|
+    |distances_1_we0                |  14|          3|    1|          3|
+    |distances_2_address0           |  14|          3|   16|         48|
+    |distances_2_ce0                |  14|          3|    1|          3|
+    |distances_2_d0                 |  14|          3|   32|         96|
+    |distances_2_we0                |  14|          3|    1|          3|
+    |distances_3_address0           |  14|          3|   16|         48|
+    |distances_3_ce0                |  14|          3|    1|          3|
+    |distances_3_d0                 |  14|          3|   32|         96|
+    |distances_3_we0                |  14|          3|    1|          3|
+    |distances_4_address0           |  14|          3|   16|         48|
+    |distances_4_ce0                |  14|          3|    1|          3|
+    |distances_4_d0                 |  14|          3|   32|         96|
+    |distances_4_we0                |  14|          3|    1|          3|
+    |distances_5_address0           |  14|          3|   16|         48|
+    |distances_5_ce0                |  14|          3|    1|          3|
+    |distances_5_d0                 |  14|          3|   32|         96|
+    |distances_5_we0                |  14|          3|    1|          3|
+    |distances_6_address0           |  14|          3|   16|         48|
+    |distances_6_ce0                |  14|          3|    1|          3|
+    |distances_6_d0                 |  14|          3|   32|         96|
+    |distances_6_we0                |  14|          3|    1|          3|
+    |distances_7_address0           |  14|          3|   16|         48|
+    |distances_7_ce0                |  14|          3|    1|          3|
+    |distances_7_d0                 |  14|          3|   32|         96|
+    |distances_7_we0                |  14|          3|    1|          3|
+    |distances_8_address0           |  14|          3|   16|         48|
+    |distances_8_ce0                |  14|          3|    1|          3|
+    |distances_8_d0                 |  14|          3|   32|         96|
+    |distances_8_we0                |  14|          3|    1|          3|
+    |distances_9_address0           |  14|          3|   16|         48|
+    |distances_9_ce0                |  14|          3|    1|          3|
+    |distances_9_d0                 |  14|          3|   32|         96|
+    |distances_9_we0                |  14|          3|    1|          3|
+    |in_stream_TREADY_int_regslice  |   9|          2|    1|          2|
+    |visited_1_address1             |  14|          3|   20|         60|
+    |visited_1_ce1                  |  14|          3|    1|          3|
+    |visited_1_d1                   |  14|          3|    1|          3|
+    |visited_1_we1                  |  14|          3|    1|          3|
+    +-------------------------------+----+-----------+-----+-----------+
+    |Total                          | 992|        212|  825|       2477|
+    +-------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------------------+----+----+-----+-----------+
+    |                           Name                           | FF | LUT| Bits| Const Bits|
+    +----------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                 |   5|   0|    5|          0|
+    |grp_bfs_gas_Pipeline_VITIS_LOOP_22_1_fu_386_ap_start_reg  |   1|   0|    1|          0|
+    |grp_bfs_gas_Pipeline_VITIS_LOOP_31_2_fu_425_ap_start_reg  |   1|   0|    1|          0|
+    |lshr_ln_reg_478                                           |  16|   0|   16|          0|
+    |num_nodes_read_reg_468                                    |  32|   0|   32|          0|
+    |source_read_reg_473                                       |  32|   0|   32|          0|
+    |trunc_ln28_reg_483                                        |   4|   0|    4|          0|
+    +----------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                     |  91|   0|   91|          0|
+    +----------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+--------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  | Source Object|    C Type    |
++-----------------------+-----+-----+------------+--------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|       s_axi|       control|        scalar|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|       control|        scalar|
+|s_axi_control_AWADDR   |   in|    5|       s_axi|       control|        scalar|
+|s_axi_control_WVALID   |   in|    1|       s_axi|       control|        scalar|
+|s_axi_control_WREADY   |  out|    1|       s_axi|       control|        scalar|
+|s_axi_control_WDATA    |   in|   32|       s_axi|       control|        scalar|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|       control|        scalar|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|       control|        scalar|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|       control|        scalar|
+|s_axi_control_ARADDR   |   in|    5|       s_axi|       control|        scalar|
+|s_axi_control_RVALID   |  out|    1|       s_axi|       control|        scalar|
+|s_axi_control_RREADY   |   in|    1|       s_axi|       control|        scalar|
+|s_axi_control_RDATA    |  out|   32|       s_axi|       control|        scalar|
+|s_axi_control_RRESP    |  out|    2|       s_axi|       control|        scalar|
+|s_axi_control_BVALID   |  out|    1|       s_axi|       control|        scalar|
+|s_axi_control_BREADY   |   in|    1|       s_axi|       control|        scalar|
+|s_axi_control_BRESP    |  out|    2|       s_axi|       control|        scalar|
+|ap_clk                 |   in|    1|  ap_ctrl_hs|       bfs_gas|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_hs|       bfs_gas|  return value|
+|interrupt              |  out|    1|  ap_ctrl_hs|       bfs_gas|  return value|
+|in_stream_TDATA        |   in|   32|        axis|     in_stream|       pointer|
+|in_stream_TVALID       |   in|    1|        axis|     in_stream|       pointer|
+|in_stream_TREADY       |  out|    1|        axis|     in_stream|       pointer|
++-----------------------+-----+-----+------------+--------------+--------------+
+
